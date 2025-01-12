@@ -5,16 +5,26 @@ def main():
     num_words = get_num_words(text)
     num_characters = get_num_characters(text)
     character_dicts = list_of_character_dicts(num_characters)
+
     print(f"-- Begin report of {book_path} --")
-    print(f"{num_words} words found in the document")
+    print(f"{num_words} words found in the document\n")
+
     for dicts in character_dicts: 
         for key, value in dicts.items():
             print(f"The {key} character was found {value} times")
+    
     print("--- End report ---")
 
+
+def get_num_words(text):
+    words = text.split()
+    return len(words)
+
+    
 def sort_on(dict):
     for key in dict: 
         return dict[key]
+
 
 def list_of_character_dicts(character_dict): 
     character_dicts = []
@@ -24,18 +34,14 @@ def list_of_character_dicts(character_dict):
     return character_dicts
 
 
-def get_num_words(text):
-    words = text.split()
-    return len(words)
-
-
 def get_num_characters(text):
     characters = {}
     lowered_text = text.lower()
     for character in lowered_text: 
-        if character not in characters: 
-            characters[character] = 0 
-        characters[character] += 1  
+        if character.isalpha() == True:
+            if character not in characters: 
+                characters[character] = 0 
+            characters[character] += 1  
     return characters
 
 
